@@ -1,0 +1,99 @@
+body{
+    text-align: center;
+}
+
+*{
+	z-index: 5;
+}
+
+.div_container{
+	height: 78vh;
+    text-align:center;
+ 
+ }
+#login_backgorund{
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index:-5;
+     height:1000px;
+     width:1920px;
+     opacity:1.0
+	}
+#login_opacity{
+	position:fixed;
+    top:0px;
+    left:0px;
+    background-color:black;
+    z-index:-3;
+    opacity:0.4;
+     height:1000px;
+     width:1920px;
+    
+}
+.div_joinstep_01{
+	background-color: maroon;
+	
+}
+.div_container_01{
+/*  	background-color: gray; */
+	display:inline-block;
+	width: 80%;
+	height: 80%;
+	margin: 0 auto;
+	margin-top: 190px;
+/* 	background-color: green; */
+	
+}
+
+.div_template_top{
+    display: inline-block;
+    margin-top: 50px;
+    width: 1100px;
+    height: 140px;
+}
+.div_template_top_text{
+    text-align: center;
+}
+.div_joinstep{
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    margin-top: px;
+}
+.div_joinstep_1{
+    width: 330px;
+    background-color: #56cc9d;
+    float: left;
+    margin-right: 50px;
+    margin-top : 50px;
+    border-radius: 10px;
+
+}
+.div_joinstep_2{
+    width: 330px;
+    background-color: #56cc9d;
+    float: left;
+    margin-top : 50px;
+    border-radius: 10px;
+}
+.div_joinstep_1:hover{
+    box-shadow: 5px 5px 5px 5px rgba(150, 227, 222, 1);
+
+}
+.div_joinstep_2:hover{
+
+    box-shadow: 5px 5px 5px 5px rgba(150, 227, 222, 1);
+}
+h2{
+    margin-top : -50px;
+}
+h3{
+   padding-top: 20px;
+}
+.div_joinstep_top_text h2{
+	color: #fff;
+}
+.div_joinstep_normal h3, .div_joinstep_business h3 {
+	color: black; 
+}

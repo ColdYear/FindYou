@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.businessBoard.dao.IBusinessBoardDao">
+
+<select id="getTotalRowCount" resultType="int" parameterType="com.findYou.businessBoard.vo.BusinessSearchBoardVO">
+SELECT count(*)
+FROM b2b_board a
+	,member_info b
+WHERE a.b2b_board_writer = b.mem_id
+</select>
+
+<select id="getBusinessBoardList" resultType="com.findYou.businessBoard.vo.BusinessBoardVO" parameterType="com.findYou.businessBoard.vo.BusinessSearchBoardVO">
+	<![CDATA[
+
+SELECT b2b_board_index
+       , b2b_board_writer
+       , b2b_board_template
+       , b2b_board_category
+       , b2b_board_title
+       , b2b_board_content
+       , b2b_board_deadline_number
+       ,to_CHAR(b2b_board_reg_date , 'YYYY-MM-DD') as b2b_board_reg_date
+       , b2b_board_mod_date
+       , b2b_board_hit
+       , b2b_board_deadline_yn
+       , b2b_board_del_yn
+       , b2b_board_road_address
+       , b2b_board_cost
+       , b2b_board_zip
+       , b2b_board_hour
+       , b2b_board_detailed_addr
+       , b2b_board_date
+       , b.mem_company_name as b2b_company_name
+FROM b2b_board a
+	,member_info b
+WHERE a.b2b_board_writer = b.mem_id
+and b2b_board_del_yn='N'
+AND to_char(b2b_board_date,'YYYY-MM-DD') >= to_char(sysdate,'YYYY-MM-DD')
+]]>
+	<if test='@org.apache.commons.lang3.StringUtils@isNotBlank(businessBoardSearchWord)'>
+		<choose>
+			<when test='businessBoardSearchType == "DC00"'>
+				AND b2b_board_template = #{businessBoardSearchType}
+				AND ( b2b_board_title Like '%' || #{businessBoardSearchWord} || '%' OR b2b_board_content Like '%' || #{businessBoardSearchWord} || '%')  
+			</when>
+			<when test='businessBoardSearchType == "CB00"'>
+				AND b2b_board_template = #{businessBoardSearchType}
+				AND ( b2b_board_title Like '%' || #{businessBoardSearchWord} || '%' OR b2b_board_content Like '%' || #{businessBoardSearchWord} || '%')  
+			</when>
+			<when test='businessBoardSearchType == "TOTAL"'>
+				AND ( b2b_board_title Like '%' || #{businessBoardSearchWord} || '%' OR b2b_board_content Like '%' || #{businessBoardSearchWord} || '%')  
+			</when>
+		</choose>
+	</if>
+	<if test='@org.apache.commons.lang3.StringUtils@isNotBlank(businessBoardSearchType)'>
+		<choose>
+			<when test='businessBoardSearchType == "DC00"'>
+				AND b2b_board_template = #{businessBoardSearchType}
+			</when>
+			<when test='businessBoardSearchType == "CB00"'>
+				AND b2b_board_template = #{businessBoardSearchType}
+			</when>
+		</choose>
+	</if>
+	<if test='@org.apache.commons.lang3.StringUtils@isNotBlank(businessBoardSearchCategory)'>
+		<choose>
+			<when test='businessBoardSearchCategory == "b2bBoardHit"'>
+				ORDER BY b2b_board_hit desc
+			</when>
+			<when test='businessBoardSearchCategory == "b2bBoardRegDate"'>
+				ORDER BY b2b_board_reg_date desc
+			</when>
+		</choose>
+	</if>
+	
+
+
+</select>
+
+<select id="getBusinessBoard" resultType="com.findYou.businessBoard.vo.BusinessBoardVO" parameterType="int">
+SELECT b2b_board_index
+       , b2b_board_writer
+       , b2b_board_template
+       , b2b_board_category
+       , b2b_board_title
+       , b2b_board_content
+       , b2b_board_deadline_number
+       , b2b_board_reg_date
+       , b2b_board_mod_date
+       , b2b_board_hit
+       , b2b_board_deadline_yn
+       , b2b_board_del_yn
+       , b2b_board_road_address
+       , b2b_board_cost
+       , b2b_board_zip
+       , b2b_board_hour
+       , b2b_board_detailed_addr
+       , to_CHAR(b2b_board_date, 'YYYY-MM-DD') AS b2b_board_date
+       , b.mem_company_name as b2b_company_name
+FROM b2b_board a
+	,member_info b
+WHERE a.b2b_board_writer = b.mem_id
+and b2b_board_index= #{b2bBoardIndex}
+</select>
+
+<update id="updateBusinessBoard" parameterType="com.findYou.businessBoard.vo.BusinessBoardVO">
+UPDATE b2b_board
+SET  b2b_board_title = #{b2bBoardTitle}
+	,b2b_board_template = #{b2bBoardTemplate}
+    ,b2b_board_category = #{b2bBoardCategory}
+    ,b2b_board_deadline_number = #{b2bBoardDeadlineNumber}
+    ,b2b_board_zip = #{b2bBoardZip}
+    ,b2b_board_road_address = #{b2bBoardRoadAddress}
+    ,b2b_board_detailed_addr = #{b2bBoardDetailedAddr}
+    ,b2b_board_date = to_date(#{b2bBoardDate}, 'YYYY-MM-DD')
+    ,b2b_board_hour = #{b2bBoardHour}
+    ,b2b_board_cost = #{b2bBoardCost}
+    ,b2b_board_content =#{b2bBoardContent}
+	,b2b_board_mod_date= sysdate
+WHERE b2b_board_index=#{b2bBoardIndex}
+
+</update>
+
+<delete id="deleteBusinessBoard" parameterType="com.findYou.businessBoard.vo.BusinessBoardVO">
+delete from b2b_board
+WHERE b2b_board_index=#{b2bBoardIndex}
+</delete>
+
+<insert id="insertBusinessBoard" parameterType="com.findYou.businessBoard.vo.BusinessBoardVO">
+<selectKey resultType="int" order="BEFORE" keyProperty="b2bBoardIndex">
+select SEQ_B2B_BOARD.nextval 
+from dual
+</selectKey>
+INSERT INTO b2b_board (
+    b2b_board_index
+    , b2b_board_writer
+    , b2b_board_template
+    , b2b_board_category
+    , b2b_board_title
+    , b2b_board_content
+    , b2b_board_deadline_number
+    , b2b_board_reg_date
+    , b2b_board_mod_date
+    , b2b_board_hit
+    , b2b_board_deadline_yn
+    , b2b_board_del_yn
+    , b2b_board_road_address
+    , b2b_board_cost
+    , b2b_board_zip
+    , b2b_board_hour
+    , b2b_board_detailed_addr
+    , b2b_board_date
+) VALUES (
+    #{b2bBoardIndex}
+    , #{b2bBoardWriter}
+    , #{b2bBoardTemplate}
+    , #{b2bBoardCategory}
+    , #{b2bBoardTitle}
+    , #{b2bBoardContent}
+    , #{b2bBoardDeadlineNumber}
+    , sysdate
+    , null
+    , 0
+    , 'N'
+    , 'N'
+    , #{b2bBoardRoadAddress}
+    , #{b2bBoardCost}
+    , #{b2bBoardZip}
+    , #{b2bBoardHour}
+    , #{b2bBoardDetailedAddr}
+    , #{b2bBoardDate}
+)
+
+</insert>
+<update id="increaseHit" parameterType="int">
+UPDATE b2b_board
+SET b2b_board_hit = b2b_board_hit + 1
+WHERE b2b_board_index = #{b2bBoardIndex}
+
+</update>
+
+<select id="b2bUpDelButton" parameterType="com.findYou.b2bParticipation.vo.B2bParticipationVO" resultType="String">
+SELECT  b2b_board_writer
+FROM b2b_board a
+	,member_info b
+WHERE a.b2b_board_writer = b.mem_id
+and b2b_board_writer = #{b2bPartId}
+and b2b_board_index = #{b2bPartBoardNumber}
+</select>
+
+<select id="homeBoardList14" resultType="com.findYou.businessBoard.vo.BusinessBoardVO">
+select b.*
+from(
+    select rownum as rnum , a.*
+    from(
+        SELECT b2b_board_index
+               , b2b_board_writer
+               , b2b_board_template
+               , b2b_board_category
+               , b2b_board_title
+               , b2b_board_content
+               , b2b_board_deadline_number
+               , to_char(b2b_board_reg_date, 'YYYY-MM-DD') AS b2b_board_reg_date
+               , b2b_board_mod_date
+               , b2b_board_hit
+               , b2b_board_deadline_yn
+               , b2b_board_del_yn
+               , b2b_board_road_address
+               , b2b_board_cost
+               , b2b_board_zip
+               , b2b_board_hour
+               , b2b_board_detailed_addr
+               , b2b_board_date
+        FROM b2b_board
+        WHERE b2b_board_del_yn = 'N'
+        order by b2b_board_reg_date desc
+        ) a
+    ) b
+where rnum between 1 and 4
+</select>
+
+<select id="homeBoardList58" resultType="com.findYou.businessBoard.vo.BusinessBoardVO">
+select b.*
+from(
+    select rownum as rnum , a.*
+    from(
+        SELECT b2b_board_index
+               , b2b_board_writer
+               , b2b_board_template
+               , b2b_board_category
+               , b2b_board_title
+               , b2b_board_content
+               , b2b_board_deadline_number
+               , to_char(b2b_board_reg_date, 'YYYY-MM-DD') AS b2b_board_reg_date
+               , b2b_board_mod_date
+               , b2b_board_hit
+               , b2b_board_deadline_yn
+               , b2b_board_del_yn
+               , b2b_board_road_address
+               , b2b_board_cost
+               , b2b_board_zip
+               , b2b_board_hour
+               , b2b_board_detailed_addr
+               , b2b_board_date
+        FROM b2b_board
+        WHERE b2b_board_del_yn = 'N'
+        order by b2b_board_reg_date desc
+        ) a
+    ) b
+where rnum between 5 and 8
+</select>
+
+<select id="cutBestRank" resultType="com.findYou.businessBoard.vo.BusinessBoardVO">
+select b.*
+from(
+    select rownum as rnum, a.*
+    from ( 
+        SELECT b2b_board_title
+               , b2b_board_hit
+               ,'business' as b2b_board_category
+               ,b2b_board_index
+        FROM b2b_board
+        union
+        SELECT normal_board_title
+               , normal_board_hit
+               ,'normal' as b2b_board_category
+               ,normal_board_index
+        FROM normal_board
+        order by b2b_board_hit desc
+        ) a
+    ) b
+where rnum between 1 and 10  
+
+</select>
+
+
+
+
+
+
+
+</mapper>

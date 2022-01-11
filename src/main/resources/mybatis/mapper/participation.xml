@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.participation.dao.IParticipationDao">
+
+<insert id="insertJoinMember" parameterType="com.findYou.participation.vo.ParticipationVO">
+	INSERT INTO normal_join_participation (
+      normal_part_index
+    , normal_part_board_number
+    , normal_part_id
+    , normal_part_addr
+    , normal_part_cancel_yn
+	) VALUES (
+	      seq_normal_join_participation.nextval
+	    , #{normalPartBoardNumber}
+	    , #{normalPartId}
+	    , #{normalPartAddr}
+	    , 'N'
+	)
+</insert>
+
+<select id="getJoinMember" resultType="com.findYou.participation.vo.ParticipationVO" parameterType="com.findYou.participation.vo.ParticipationVO">
+	SELECT  
+   		normal_part_board_number
+		, normal_part_id
+		, normal_part_addr
+	FROM normal_join_participation a, member_info b
+	WHERE normal_part_id = #{normalPartId}
+	AND   normal_part_board_number = #{normalPartBoardNumber}
+	and a.NORMAL_PART_ID = b.mem_id
+</select>
+
+
+<select id="getJoinMemberCount" resultType="int" parameterType="int">
+	select count(*)
+	from normal_join_participation a, member_info b
+	where normal_part_board_number = #{normalPartBoardNumber}
+	and normal_part_cancel_yn = 'N'
+	and a.NORMAL_PART_ID = b.mem_id
+</select>
+
+
+<select id="getJoinMemberListByBoardIndex" resultType="com.findYou.participation.vo.ParticipationVO" parameterType="int">
+	SELECT
+	      normal_part_board_number
+	    , normal_part_id
+	    , b.mem_name as normal_part_name
+	    , normal_part_addr
+	FROM normal_join_participation a, member_info b
+	WHERE normal_part_board_number = #{normalPartBoardNumber}
+	AND normal_part_cancel_yn = 'N'
+	and a.NORMAL_PART_ID = b.mem_id
+</select>
+
+<select id="getJoinMemberListByIndex" resultType="com.findYou.participation.vo.ParticipationVO" parameterType="int">
+	SELECT
+	      normal_part_board_number
+	    , normal_part_id
+	    , b.mem_name as normal_part_name
+	    , normal_part_addr
+	FROM normal_join_participation a, member_info b
+	WHERE normal_part_board_number = #{normalPartBoardNumber}
+	AND normal_part_cancel_yn = 'N'
+	and a.NORMAL_PART_ID = b.mem_id
+</select>
+
+
+
+<select id="getBoardNumberById" resultType="String" parameterType="com.findYou.participation.vo.ParticipationVO">
+	<![CDATA[
+	SELECT t1.normal_part_board_number
+	FROM(
+		select t1.*, ROWNUM as RNUM
+		from(
+		    select normal_part_board_number, 
+		     		normal_board_writer
+		    from normal_join_participation a
+		    	, normal_board b
+		    where normal_part_id = #{normalPartId}
+		    and a.normal_part_board_number = b.normal_board_index
+		    and normal_part_cancel_yn = 'N'
+		    ) t1,
+		    member_info t2
+		where t1.normal_board_writer = t2.mem_id
+	) t1
+	WHERE t1.RNUM <= 10
+	]]>
+<!-- and to_char(normal_board_date,'YYYY-MM-DD') < to_char(sysdate,'YYYY-MM-DD')	     -->
+	
+</select>
+
+<select id="getAllPartList" parameterType="com.findYou.participation.vo.ParticipationVO" resultType="com.findYou.participation.vo.ParticipationVO">
+<![CDATA[
+select t1.*
+from(
+    select a.* , ROWNUM as RNUM
+    from
+        (
+           select normal_part_board_number
+                  ,normal_part_id
+                  ,'normal' as normal_part_category
+                  ,normal_board_reg_date
+            from normal_join_participation a, normal_board b
+            where a.normal_part_board_number = b.normal_board_index
+            and normal_part_id = #{normalPartId}
+            union
+            select b2b_part_board_number
+                  ,b2b_part_id
+                  ,'business' as category
+                  ,b2b_board_reg_date
+            from b2b_join_participation a, b2b_board b
+            where a.b2b_part_board_number = b.b2b_board_index
+            and b2b_part_id = #{normalPartId}
+            order by normal_board_reg_date desc
+        ) a
+    ) t1
+where t1.rnum <= 10
+
+]]>
+</select>
+
+
+<update id="deleteParticiaptionMember" parameterType="com.findYou.participation.vo.ParticipationVO">
+	update normal_join_participation
+	set normal_part_cancel_yn = 'Y'
+	where normal_part_id = #{normalPartId}
+	and normal_part_board_number = #{normalPartBoardNumber}
+</update>
+
+
+<update id="updateParticipationMember" parameterType="com.findYou.participation.vo.ParticipationVO">
+	update normal_join_participation
+	set normal_part_cancel_yn = 'N'
+	where normal_part_id = #{normalPartId}
+	and normal_part_board_number = #{normalPartBoardNumber}
+</update>
+
+<delete id="foreverDeleteParticipationMember" parameterType="String">
+	delete from normal_join_participation
+	where normal_part_board_number = #{normalPartBoardNumber}
+</delete>
+
+<update id="updateScoreYN">
+	update normal_join_participation
+	set normal_part_score_yn = 'Y'
+	where normal_part_board_number = #{normalPartBoardNumber}
+	and normal_part_id = #{normalPartId}
+</update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

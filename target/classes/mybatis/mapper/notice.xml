@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.notice.dao.INoticeDao">
+
+<select id="getNoticeList" resultType="com.findYou.notice.vo.NoticeVO">
+	SELECT 
+		notice_board_index
+	,	notice_board_writer
+	,	notice_board_title
+	,	notice_board_content
+	,	to_char(notice_board_reg_date,'YYYY-MM-DD') as notice_board_reg_date
+	FROM NOTICE_BOARD
+	WHERE notice_board_del_yn = 'N'
+
+
+</select>
+
+<insert id="insertNotice" parameterType="com.findYou.notice.vo.NoticeVO">
+	INSERT INTO NOTICE_BOARD(
+		notice_board_index
+	,	notice_board_writer
+	,	notice_board_title
+	,	notice_board_content
+	,	notice_board_reg_date
+	,	notice_board_mod_date
+	,	notice_board_del_yn
+	)
+	VALUES(
+	seq_notice.nextval
+	, #{noticeBoardWriter}
+	, #{noticeBoardTitle}
+	, #{noticeBoardContent}
+	, sysdate
+	, null
+	, 'N'
+	)
+</insert>
+
+
+
+<select id="getNotice" parameterType="String" resultType="com.findYou.notice.vo.NoticeVO">
+
+SELECT 
+		notice_board_index
+	,	notice_board_writer
+	,	notice_board_title
+	,	notice_board_content
+	,	notice_board_reg_date
+	,	notice_board_mod_date
+	,	notice_board_del_yn
+	
+	FROM notice_board
+	WHERE notice_board_index = #{noticeBoardIndex}
+
+
+
+</select>
+
+
+<update id="updateNotice" parameterType="com.findYou.notice.vo.NoticeVO">
+UPDATE notice_board set
+		notice_board_title = #{noticeBoardTitle},
+		notice_board_content = #{noticeBoardContent}
+WHERE notice_board_index = #{noticeBoardIndex}
+
+
+</update>
+<update id="deleteNotice" parameterType="com.findYou.notice.vo.NoticeVO">
+		update notice_board
+		set notice_board_del_yn = 'Y'
+		where notice_board_index = #{noticeBoardIndex}
+</update>
+
+
+<select id="noticeBoardList14" resultType="com.findYou.notice.vo.NoticeVO">
+select b.*
+from (
+    select rownum as rnum , a.*
+    from (
+        SELECT notice_board_index
+               , notice_board_title
+               ,to_char(notice_board_reg_date, 'YYYY-MM-DD') as notice_board_reg_date
+        FROM notice_board
+        WHERE notice_board_del_yn = 'N'
+        order by notice_board_reg_date desc
+        ) a
+    ) b
+where rnum between 1 and 4
+</select>
+
+<select id="noticeBoardList58" resultType="com.findYou.notice.vo.NoticeVO">
+select b.*
+from (
+    select rownum as rnum , a.*
+    from (
+        SELECT notice_board_index
+               , notice_board_title
+               ,to_char(notice_board_reg_date, 'YYYY-MM-DD') as notice_board_reg_date
+        FROM notice_board
+        WHERE notice_board_del_yn = 'N'
+        order by notice_board_reg_date desc
+        ) a
+    ) b
+where rnum between 5 and 8
+</select>
+
+
+
+
+</mapper>

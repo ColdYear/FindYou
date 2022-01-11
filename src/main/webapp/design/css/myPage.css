@@ -1,0 +1,468 @@
+body{
+	height : 1300px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+#div_container{
+   width: 70%;
+   height:680px;
+   margin: 180px; /*가운데 정렬*/
+   margin-left : 500px;
+}
+
+#mypage_info{
+   width:70%;
+   height: 318px;
+   background-color: white;
+   position:relative;
+   top:-70px;
+}
+#mypage_played{
+   width:70%;
+   height: 350px;
+   background-color: white;
+   position:relative;
+   top:-70px;
+}
+
+.my_info{
+    text-align: left;
+    font-size: 20px;
+    line-height: 30px;
+    color: #666;
+}
+.my_played_list{
+    text-align: left;
+    font-size: 20px;
+    line-height: 30px;
+    color: #666;
+    border-top:2px solid ;
+    height:500px !important;
+    max-height:500px !important; 
+}
+
+#my_info_revise{
+    width: 140px !important;
+    height : 90px !important;
+    float : right;
+    border-radius:20px !important;
+    
+}
+
+
+
+.my_info_top{
+    background-color :white;
+
+}
+h1{
+    text-align : left;
+}
+
+
+h4{
+    color : white;
+    background-color : #272727;
+}
+.my_image{
+    margin-top : 30px;
+    margin-left : 10px;
+}
+.my_name{
+    text-align : left;
+    margin-top : auto;
+}
+.revise_button{
+    margin-top : -20px;
+}
+.my_played_top{
+    text-align : left;
+}
+#mypage_played{
+    margin-top : 30px;
+}
+
+
+
+#mypage_info{
+   width:70%;
+   height: 318px;
+   background-color: white;
+   float: left;
+}
+#mypage_played{
+   width:70%;
+   height: 350px;
+   background-color: white;
+   float: left;
+}
+
+.my_info{
+    text-align: left;
+    font-size: 20px;
+    line-height: 30px;
+    color: #666;
+    background-color:beige;
+    border-radius:20px;
+    padding:10px;
+}
+.my_played_list{
+    text-align: left;
+    font-size: 20px;
+    line-height: 30px;
+    color: #666;
+    border: 3px solid ;
+}
+
+
+#my_info_revise{
+    width: 20%;
+    height : 75px;
+    float : right;
+
+    
+}
+
+
+#list{
+    float : right;
+    margin-top : -85px;  
+    width : 33%;
+    height : 85px;
+   font-size : 15px;
+
+}
+
+.my_info_top{
+    background-color :white;
+
+}
+h1{
+    text-align : left;
+}
+
+
+h4{
+    color : white;
+    background-color : #272727;
+}
+.my_image{
+    margin-top : 30px;
+    margin-left : 10px;
+}
+.my_name{
+    text-align : left;
+    margin-top : auto;
+}
+
+
+
+
+
+#playlist_button{
+	float:right;
+    width : 100px;
+    height : 30px;
+    line-height : 3px;
+  
+
+}
+.my_played_list{
+    line-height : 40px;
+}
+
+.divTitle{
+	width : 400px;
+    text-overflow:hidden;
+	display:inline-block;
+}
+#divTitle_top{
+	width : 400px;
+	display:inline-block;
+}
+
+#divTitle_top{
+    color : black;
+    background-color : white; 
+    border : 0px
+}
+#totalScore{
+    color : black;
+    background-color : white; 
+    border : 0px
+    position:relative;
+    margin-left:120px !important;
+    border:none;
+}
+
+#underline{
+	width: 935px;
+	height:3px;
+    position:relative;
+    left:-10px;
+	display: block;
+	background-color: black;
+}
+.my_played_list_all{
+    margin-top : 10px;
+}
+#my_played_list_title{
+	width:100%;
+    margin-top: -10px;
+}
+
+#my_info_revise{
+	margin-right : 10px;
+	width: 120px;
+	margin-top : -35px;
+	border-radius: 10px;
+}
+.my_name{
+	margin-left : 130px;
+}
+
+.my_info{
+	height : 270px;
+}
+#list{
+	height: 90px;
+	width : 140px;
+	border-radius: 20px;
+	position:relative;
+	left:-10px;
+	top:20px;
+}
+.my_name {
+	line-height : 40px;
+}
+
+#normalScore{
+	width:100px;
+	position:relative;
+	top:-17px;
+}
+	
+
+#playlist_button2{
+  width:100px;
+  position : relative;
+  height : 30px;
+  line-height : 10px;
+   left:100px;
+   top:-20px;
+}
+
+
+.modal-body{
+	display : flex;
+}
+.modal_id{
+	text-align : left;
+	margin-left : 70px;
+	font-size : 30px;
+	width: 200px;
+	line-height : 60px;
+}
+.selectbox{
+	width: 80px;
+	margin-top : -15px;
+
+ 
+}
+.form-select{
+	margin-top : 25px;
+}
+
+.normalPartId{
+	display:inline-block;
+	width:150px !important;
+	font-size:18px;
+}
+
+.normalPartScore{
+	display:inline-block;
+	position:relative;
+	width:50px;
+	
+}
+
+
+
+.modal-body *{
+	color:black;
+}
+
+.div_id_list{
+	position:relative;
+	left:-10px;
+}
+
+.titleOfMyPage{
+	font-size:25px !important;
+	font-weight:bold;
+
+}
+
+
+
+.divTitle{
+	width:500px;
+	display:inline-block;
+	text-overflow:hidden;
+	overflow:hidden;
+}
+.myPage_record_list{
+/*  	background-color: aqua; */
+	width: 70%;
+	height: 700px;
+	margin-top:80px;
+	margin-left: 490px;
+
+}
+.myPage_record_list01{
+/*  	background-color: orange;  */
+	width: 70%;
+	height: 500px;
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: -380px;
+}
+.table_td1{
+	width: 700px;
+	height: 50px;
+	font-size: 20px;
+	text-align: left;
+/*  	background-color: buttonface; */
+}
+.table_td2{
+	width:240px;
+	height: 40px;
+	text-align: left;
+ /* 	background-color: navy; */
+}
+.table_td2 button{
+	margin-left: 20px;
+}
+.table_td3{
+	width:100px;
+	height: 40px;
+/* 	background-color: blue; */
+}
+
+.myPage_record_list01_title{
+	font-size:18px !important;
+	text-align: left;
+	color: black;
+}
+.div_list{
+	border: 3px solid black;
+}
+.table_1{
+	/* background-color: green; */
+	font-size:18px !important;
+	border-bottom: 2px solid black;
+	color: black;
+}
+.table_1 span{
+/* 	background-color: blue; */
+	margin-left: -100px;
+}
+.table_2, .table_3{
+	border-bottom: 2px solid black;
+
+}
+.meeting_title_button, .meeting_title_list{
+	width: 100px;
+	height: 30px;
+	line-height:10px;
+	
+}
+.meeting_title_button{
+	margin-right: 70px;
+}
+#div_modal{
+	/* 참여목록 창 */
+    width: 100%;
+    height: 500px;
+/*     display: none; */
+ 	 position: absolute;
+    top: 50%;
+    left: 40%;
+	 z-index: 999;
+}
+.font_size{
+	font-size: 20px;
+}
+.myPage_record_list01_title > span{
+/* 	background-color: fuchsia; */
+	margin-left: 10px;
+}
+#span_blank{
+	display:inline-block;
+	width: 135px;
+	height:42px;
+}
+.line{
+	position: absolute;
+	width: 935px;
+	height: 3px;
+	background-color: black;
+	margin-top: 88px;
+	margin-left: 13px;
+}
+.blackList{
+	width : 170px;
+	font-weight : bold;
+	color : red !important;
+	position : relative;
+    left: 110px;
+	top : 25px;
+	cursor : pointer;
+	border-bottom : 1px solid red;
+	margin-left:10px;
+}
+#div_background{
+	width : 600px;
+	height : 800px;
+	background : url('../img/blackbanner.png');
+	background-size : 600px 750px;
+	background-repeat : no-repeat;
+	position:fixed;
+	top: 60px;
+	left : 700px;
+	z-index : 1000;
+	border : 1px solid black;
+	padding : 10px;
+	background-color : #FFFCF6;
+	
+}
+
+
+#close_background{
+	position : relative;
+	top: 745px;	
+}
+
+#div_container *:not(button){
+	color:black;
+}
+
+.div_list *:not(button){
+	color:black;
+}
+
+.line + span{
+	font-size:25px;
+	font-weight:bold;
+}
+
+#newMessage{
+	position:absolute;
+	top:226px;
+	left:785px;
+	z-index:100;
+	cursor:pointer;
+}

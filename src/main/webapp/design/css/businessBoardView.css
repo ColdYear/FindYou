@@ -1,0 +1,616 @@
+body{
+    text-align: center;
+    z-index:1;
+    margin:auto;
+    display:inline-block;
+}
+
+ul{
+	list-style: none;
+}
+
+#div_gray{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:990;
+	background-color:rgba(0,0,0,0.7);
+	width:100%;
+	height:2250px;
+	display:none;
+}
+
+
+.div_container{
+    width: 850px;
+    height: 1300px;
+/*     background-color:paleturquoise; */
+    margin-top: 80px;
+    text-align:center;
+    display:inline-block;
+
+}
+
+.div_container > *{
+	margin:auto !important;
+}
+
+.div_board_title{
+    /* 목록버튼, 제목, 수정버튼 */
+   display: inline-block;
+   text-align:center;
+   	width:700px;
+	height:100px;
+	padding-top:50px;
+	display:inline-block;
+	font-size: 50px;
+}
+
+.div_board_title > h2{
+	line-height:30px;
+}
+.list_button{
+    /* 목록버튼 */
+    margin-top: 60px;
+    /* background-color: gold; */
+    width: 70px;
+    height: 30px;
+}
+.update_button{
+    /* 수정버튼 */
+    margin-top: 60px;
+    margin-right: 20px;
+    /* background-color: gold; */
+    width: 70px;
+    height: 30px;
+}
+
+.div_board_img{
+    /* 이미지 */
+    width: 800px;
+    height: 700px;
+    /* border:1px lightgrey solid; */
+    border-bottom:none;
+	
+}
+
+.div_attach_image{
+	width:100%;
+	height:602px;
+	display:flex;
+	text-align:center;
+}
+
+#btn_next, #btn_prev{
+	width:50px;
+	height:50px;
+	border:none;
+	/* background-color:lightgray; */
+	color:black;
+	font-size:35px;
+	position:relative;
+	font-weight:bold;
+	border-radius:10px;
+    padding-bottom:30px;
+    line-height:40px;
+    background-color:transparent;
+    font-size:50px;
+    font-weight:bold;
+}
+
+#btn_next{
+		top:-350px;
+	left:330px;
+}
+
+#btn_prev{
+	top:-350px;
+	left:-350px;
+}
+
+.div_user_info{
+	width:100%;
+	height:100px;
+	margin-top: -50px;
+/* 	background-color: green; */
+}
+
+.div_user_info > img{
+	margin-top:-40px;
+}
+.div_user_info > *:not(img){
+	position:relative;
+	top:-15px;
+}
+
+.div_board_write_content{
+    /* 활동 상세내역 */
+    width: 799px;
+    height: 330px;
+    /* background-color: seagreen; */
+    font-size: 20px;
+    /* border: 3px solid lightgrey; */
+    display:inline-block;
+    border-top: 1px solid black;
+
+}
+
+.div_board_write_content *{
+	font-size:25px;
+}
+
+.div_content{
+	width:800px;
+	height:300px;
+	text-align:left;
+}
+
+#div_etc_content{
+	width:50%;
+	height:130px;
+	display:inline-block;
+	text-align:left;
+}
+
+#ul_content > li{
+	margin:20px 0px;
+}
+
+#div_detail_content{
+	width:730px;
+	height:200px;
+	/* border:1px solid grey; */
+	margin-top:5px;
+	display:inline-block;
+
+}
+
+.div_join_button{
+	width:100%;
+	height:100px;
+	
+/* 	background-color: blue; */
+}
+
+.div_join_button > button{
+	width:300px;
+	height:80px;
+	background-color:transparent;
+	/* border:3px solid black; */
+	border-radius:5px;
+	font-size:25px;
+	font-weight:bold;
+	margin:10px;
+	
+}
+
+.div_board_hobby_personnel{
+    /* 참여현황 영역 */
+    /* background-color: hotpink; */
+    height: 50px;
+}
+.div_board_hobby_personnel h3{
+    /* 참여현황 */
+    width: 200px;
+    height: 50px;
+    font-size: 25px;
+    /* background-color: turquoise; */
+    margin-left: 200px;
+}
+
+.line{
+    margin-top:250px;
+    margin-left:30px;
+    width: 1200px;
+    height: 5px;
+    background-color:darkgrey;
+    display:inline-block;
+}
+.div_board_reply{
+    /* 댓글영역 */
+    height: 430px;
+/*      background-color: thistle; */
+    position: relative;
+    display:inline-block;
+    margin-top
+}
+
+.reply_table{
+    /* 댓글 테이블 */
+    width: 1200px;
+    height: 400px;
+    font-size: 20px;
+    /* background-color: yellow; */
+}
+.input_reply{
+    /* 댓글 입력창 */
+    width: 1700px !important;
+    height: 50px;
+     /* background-color: blue; */
+    font-size: 25px;
+    text-align: center;
+    margin-right: 20px;
+}
+.input_reply_button{
+    /* 댓글 등록 버튼 */
+    width: 70px;
+    height: 50px;
+    font-size: 30px;
+     /* background-color: brown; */
+    cursor: pointer;
+}
+.button_update, .button_delete{
+    /* 댓글 수정 삭제 버튼 */
+    /* background-color: chartreuse; */
+    width: 50px;
+    height: 30px;
+    margin-right: 5px;
+    cursor: pointer;
+    padding:0 !important;
+}
+#div_modal{
+	/* 참여목록 창 */
+    width: 100%;
+    height: 500px;
+    display: none;
+ 	 position: absolute;
+    top: 50%;
+    left: 50%;
+	 z-index: 999;
+ 
+ /*    background-color: cyan; */
+
+     
+}
+
+
+.div_join_view{
+	width:100%;
+	display:block;
+}
+
+.div_modal_attend{
+    width: 445px;
+    height: 480px;
+    font-size: 15px;
+    overflow: auto;
+    /* background-color: darkgray; */
+}
+.member_view_button{
+    /* 상세보기 버튼 */
+    cursor: pointer;
+}
+.div_modal_attend_top{
+    /* background-color: greenyellow; */
+    height: 50px;
+    display: flex;
+}
+.div_modal_attend_top h3{
+    width: 300px;
+    height: 30px;
+    margin-left: 70px;
+    margin-right: 40px;
+    /* background-color: aqua; */
+
+}
+.close_button{
+     /* background-color: aliceblue; */
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.member_view_button{
+	width:100px;
+	height:35px;
+}
+
+
+
+.div_member_info_view{
+    /* 회원상세보기 영역 */
+    width: 400px;
+    height: 515px !important;
+    display: none;
+    position:absolute;
+    z-index:9999;
+    text-align:center;
+}
+.div_member_info_view_table{
+     /* 회원 상세보기 */
+    width: 400px !important;
+    height: 515px !important;
+    background-color: cornsilk !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    border-radius: 5px;
+    color:black;
+}
+.div_member_info_view_table_top{
+    width: 400px;
+    height: 50px;
+    display: flex;
+    border: 1px solid lightblue;
+     /* background-color: crimson; */
+}
+.div_member_info_view_table h3{
+    text-align: center;
+    margin-left: 130px;
+    color:black;
+     /* background-color: aqua; */
+}
+.close_button2{
+    /* 회원상세보기 x버튼 */
+     /* background-color: aliceblue;  */
+    margin-left: 77px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+.send_button{
+    /* background-color: cyan; */
+    cursor: pointer;
+    font-size: 20px;
+    width: 180px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+
+#member_info_view td{
+	margin-left:10px;
+	/* border-top:1px solid lightgray; */
+	color:black;
+}
+
+#active_title{
+	text-align: center;
+	font-size:20px;
+}
+
+.reply_content{
+	width:1200px;
+	text-align:left;
+	margin:40px 0px
+}
+
+.reply_content *{
+	color:black;
+	margin:10px 5px;
+}
+
+.reply_content_line{
+	width:1200px;
+	height:1px;
+	background-color:black;
+	display:block;
+}
+
+.reply_content_content{
+	display:block;
+	width:1200px;
+	height:auto;
+}
+
+.reply_content_content > input{
+	width:600px !important;
+}
+
+#div_reply_input{
+	width:1200px;
+	display:flex;
+	height:50px;
+	position:relative;
+	left:250px;
+}
+
+#span_not_reply{
+	height:300px;
+	display:inline-block;
+	margin-top:130px;
+	font-size:20px;
+}
+
+.reply_content_content > input{
+	color:black;
+	font-size:18px;
+}
+.div_button {
+    /* 수정 삭제 목록 구역 */
+/*     background-color: beige; */
+    text-align: center;
+    margin-top: 10px;
+    font-size: 25px;
+    position:relative;
+    top:20px;
+}
+
+
+.card-link *{
+	margin-bottom:10px !important;
+	padding-bottom:10px !important;
+}
+
+.div_board_title{
+    height: 80px;
+    font-size: 30px;
+/*     background-color: chartreuse; */
+color:black;
+}
+.div_board_title p{
+    margin-top: -30px;
+}
+
+.div_user_info span{
+/*     background-color: crimson; */
+	position: relative;
+	top: 10px;
+	font-size:25px;
+	color:black;
+	font-weight:bold;
+  
+}
+.div_user_info span, .div_user_info img{
+    /* background-color: lightblue; */
+    position: relative;
+    margin-top: 20px;
+}
+.div_content_table01{
+    /* 장소/기간/인원 */
+    margin-top: 10px;
+    margin-left: 150px;
+    width: 500px;
+    font-size: 15px;
+    /* background-color: ghostwhite; */
+}
+
+.div_content_table01 * {
+	color:black;
+}
+
+.div_content_table02_td1{
+	color:black;
+	margin-top:30px !important;
+	padding-top:30px;
+
+}
+
+
+
+
+.div_content_table02{
+    /* 상세내용 */
+    /* background-color: hotpink; */
+    font-size: 15px;
+    width: 750px;
+    height: 200px;
+    margin-left: 25px;
+}
+.div_content_table02_td1{
+ /*    background-color: ivory; */
+    height: 40px;
+    text-align: center;
+    
+}
+.div_content_table02_td2{
+/*     background-color: blue; */
+    text-align: left;
+    border: 1px solid gray;
+    display:inline-block;
+    width: 730px;
+    height: 200px;
+    margin-top:5px;
+}
+
+.div_content_table02_td2 *{
+	color:black;
+	padding:10px;
+}
+
+.div_add_line{
+	width: 800px;
+	height: 1200px;
+/* 	background-color: green; */
+	border: 1px solid gray;
+
+}
+.tr_text{
+	/* 회원 상세보기  */
+/* 	width:100%; */
+/*  	background-color: blue; */
+	padding-top: 10px;
+}
+.tr_text h3{
+	margin-top:5px;
+	margin-left: 50px;
+/* 	background-color: fuchsia; */
+}
+.tr_text button{
+	/* 회원 상세보기 x버튼 */
+/*  	background-color: aqua; */
+	position: absolute;
+	margin-top: -35px;
+ 	margin-left: 170px;
+ */
+}
+
+.tr_text_list{
+	/* 활동내역  */
+	text-align: center;
+	font-size: 18px;
+}
+.tr_td_row_img{
+	/* 회원 이미지 */
+/* 	background-color: fuchsia; */
+	width: 50%;
+	border-top: 1px solid rgb(165, 172, 179);
+	border-bottom: 1px solid rgb(165, 172, 179);
+	border-right: 1px solid rgb(165, 172, 179);
+
+}
+.tr_td_name_score{
+	/* 회원 이름 평점 */
+/* 	background-color: lime; */
+	text-align: left;;
+	width: 50%;
+	border-top: 1px solid rgb(165, 172, 179);
+	border-bottom: 1px solid rgb(165, 172, 179);
+}
+.close_button2{
+    /* 회원상세보기 x버튼 */
+/* 	 background-color: aliceblue; */
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+.send_button{
+	/* 쪽지 보내기 버튼 */
+/*     background-color: cyan; */
+    cursor: pointer;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+}
+.tr_td_title{
+	border-top: 1px solid rgb(165, 172, 179); 
+	text-align: left;
+}
+.member_close_button{
+	border-radius: 5px;
+	border: none;
+}
+
+.div_modal_send{
+
+	 z-index: 1200;
+}
+.msgContent{
+	/* 쪽지보내기 입력창 */
+/* 	background-color: maroon; */
+	width: 416px !important;
+	height: 100px !important;
+}
+
+.card-rink{
+	cursor:pointer;
+}
+
+.toast-body *{
+	color:black;
+	font-size:20px;
+}
+
+.member_info_button{
+	position:relative !important;
+	left:20px !important;
+}

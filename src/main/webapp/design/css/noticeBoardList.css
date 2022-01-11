@@ -1,0 +1,75 @@
+body{
+    text-align: center;
+}
+
+.div_container{
+    width: 80%;
+    height: 1500px;
+    display: inline-block;
+    
+}
+.title_main{
+  position:relative;
+  top:200px;
+}
+.div_notice{
+        /* 공지사항 영역 */
+    height: 540px;
+
+   
+}
+.notice_table{
+    /* 공지사항 테이블 */
+    height : 540px;
+    margin-top: 20px;
+    margin-left: 300px;
+    color : black; 
+   border : 3px solid #B8E6E1;
+    
+}
+.notice_table thead{
+    background-color: #B8E6E1;
+  
+}
+.notice_table_tbody{
+   
+}
+.notice_table_tbody tr{
+    /* 게시글 아래 밑줄 */
+    border-bottom: 1px solid #B8E6E1;
+  
+}
+.notice_table_tbody a{
+    /* a태그 밑줄 없애기 */
+    text-decoration: none;
+}
+
+.div_notice_regist_button{
+    /* 등록버튼 구역 */
+    height: 50px;
+    text-align: right;
+    
+}
+.div_notice_regist_button{
+    /* 등록버튼1 */
+  
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    margin-left : 1300px;
+    display : flex;
+    cursor: pointer;
+    margin-top : 50px;
+   
+}
+
+.notice_title{
+    text-align: left;
+}
+
+.notice_tr:hover{
+	background-color:lightgray;
+	cursor:pointer;
+}
+   
+

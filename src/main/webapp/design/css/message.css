@@ -1,0 +1,127 @@
+*:not(.navbar *){
+	margin: 0 auto;
+}
+
+.div_container{
+	width:70%;
+	height:820px;
+	background-color:#EEEEEE;
+	padding:15px;
+	margin-top:35px ;
+	border-radius:20px;
+}
+
+.div_message_header{
+	width:90%;
+	height:120px;
+	text-align:left;
+	margin-top:50px;
+}
+
+.div_message_body{
+	width:90%;
+	height:700px;
+	text-align:left;
+	margin-bottom:15px;
+
+    
+}
+
+#table_messageList{
+	width:100%;
+	color:black;	
+}
+
+.div_message_footer{
+	width:90%;
+	text-align:left;
+	position:relative;
+	left:50px;
+	top:-50px;
+}
+
+#reMessage{
+	position:relative;
+	left:20px;
+}
+
+#sub_title{
+	font-size:15px;
+	margin:20px 0px;
+}
+
+.div_body_rec{
+	width:100%;
+	height:450px;
+	background-color:#DCFFDC;
+	border-radius:35px;
+	padding-left:30px;
+	padding-top:15px;
+	position:relative;
+	top:-20px;
+	margin-top : -20px;
+}
+.pagination{
+	max-width:100px !important;
+	position:relative;
+	top:-175px;
+}
+
+
+
+#exampleTextarea{
+	width:410px;
+}
+
+.modal-body{
+	display:block;
+	width:410px;
+	border-top:1px solid lightgray;
+	border-bottom:1px solid lightgray;
+}
+
+.btn-close{
+	position:relative !important;
+	left:150px !important;
+
+}
+
+#reSendMessage, #reReceiveMessage{
+	position:relative;
+	left:10px;
+}
+
+.div_container > a{
+	position:relative;
+	left:-560px;
+}
+
+
+.tr_receive:hover, .tr_send:hover{
+	background-color: white;
+	
+}
+
+.back_gray *{
+	color:#bdbebd;
+}
+
+.tr_receive td, .tr_send td{
+	height:26px !important;
+}
+
+
+.td_send, .td_receive{
+	color:green;
+}
+
+
+
+
+
+
+
+
+
+
+

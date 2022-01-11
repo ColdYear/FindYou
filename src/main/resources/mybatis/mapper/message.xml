@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.message.dao.IMessageDao">
+
+
+<insert id="insertMessage" parameterType="com.findYou.message.vo.MessageVO">
+	INSERT INTO message_record
+	(
+		 MSG_INDEX
+		,MSG_SENDER
+		,MSG_RECEIVER
+		,MSG_CONTENT
+		,MSG_REC_TIME
+		,MSG_READ_YN
+	)
+	values 
+	(
+		 seq_msg.nextval
+		,#{msgSender}
+		,#{msgReceiver}
+		,#{msgContent}
+		,SYSDATE
+		,'N'
+	)
+</insert>
+
+<select id="getMessageByReceiver" resultType="com.findYou.message.vo.MessageVO" parameterType="com.findYou.message.vo.MessageVO">
+	SELECT msg_index
+	     , msg_sender
+	     , msg_receiver
+	     , msg_content
+	     , msg_rec_time
+	     , msg_read_yn
+	FROM(	
+		SELECT A.*, ROWNUM AS RNUM
+		FROM(
+			SELECT msg_index
+		       , msg_sender
+		       , msg_receiver
+		       , msg_content
+		       , msg_rec_time
+		       , msg_read_yn
+			FROM message_record
+			WHERE msg_receiver = #{msgReceiver}
+			ORDER BY msg_rec_time desc
+			) A
+	) T1
+	WHERE RNUM BETWEEN #{firstRow} and #{lastRow}
+</select>
+
+
+<select id="getMessageBySender" resultType="com.findYou.message.vo.MessageVO" parameterType="com.findYou.message.vo.MessageVO">
+	SELECT msg_index
+	     , msg_sender
+	     , msg_receiver
+	     , msg_content
+	     , msg_rec_time
+	     , msg_read_yn
+	FROM(	
+		SELECT A.*, ROWNUM AS RNUM
+		FROM(
+			SELECT msg_index
+		       , msg_sender
+		       , msg_receiver
+		       , msg_content
+		       , msg_rec_time
+		       , msg_read_yn
+			FROM message_record
+			WHERE msg_sender = #{msgSender}
+			ORDER BY msg_rec_time desc
+			) A
+	) T1
+	WHERE RNUM BETWEEN #{firstRow} and #{lastRow}
+</select>
+
+
+<delete id="deleteMessage" parameterType="String">
+	delete from message_record
+	where msg_index = #{msgIndex}
+</delete>
+
+<select id="getCountByReceiver" parameterType="String" resultType="int">
+	SELECT COUNT(*)
+	FROM MESSAGE_RECORD
+	WHERE MSG_RECEIVER = #{msgReceiver}
+</select>
+
+<select id="getCountBySender" parameterType="String" resultType="int">
+	SELECT COUNT(*)
+	FROM MESSAGE_RECORD
+	WHERE MSG_SENDER = #{msgSender}
+</select>
+
+
+<select id="checkReadYn" resultType="int">
+	select count(*)
+	from message_record
+	where msg_read_yn = 'N'
+</select>
+
+<update id="updateReadYn">
+	update message_record
+	set msg_read_yn = 'Y'
+	where msg_read_yn = 'N'
+</update>
+
+
+</mapper>

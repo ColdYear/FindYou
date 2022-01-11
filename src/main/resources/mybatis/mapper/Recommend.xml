@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.recommendHobby.dao.IRecommendHobbyDao">
+
+<select id="mbtiList" resultType="com.findYou.recommendHobby.vo.RecommendHobbyVO">
+select DISTINCT rec_mbti
+from recommend_hobby
+</select>
+<select id="hobbyList"  parameterType="com.findYou.recommendHobby.vo.RecommendHobbyVO"  resultType="com.findYou.recommendHobby.vo.RecommendHobbyVO">
+select distinct rec_hobby
+from recommend_hobby
+where rec_actice_yn =#{recActiceYn}
+and rec_mbti = #{recMbti}
+</select>
+<select id="searchResult" parameterType="com.findYou.recommendHobby.vo.RecommendValueVO" resultType="com.findYou.normalBoard.vo.NormalBoardVO">
+<![CDATA[
+
+SELECT *
+FROM normal_board
+where( NORMAL_BOARD_TITLE like '%' || #{hobby_value} || '%'
+or NORMAL_BOARD_CONTENT like '%' || #{hobby_value} || '%')
+and NORMAL_BOARD_DEL_YN ='N'
+and REGEXP_REPLACE(normal_board_cost, '[^0-9]')  <= #{cash}
+and to_char(normal_board_date,'YYYY-MM-DD') >= to_char(sysdate,'YYYY-MM-DD')
+ORDER BY normal_board_reg_date DESC, normal_board_index desc
+
+]]>
+</select>
+
+
+
+
+
+
+
+
+
+</mapper>

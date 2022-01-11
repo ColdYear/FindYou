@@ -1,0 +1,505 @@
+body{
+	text-align:center;
+}
+ 
+ 
+.div_container{
+    /* 큰 틀 */
+	width:100%;
+	height:auto;
+	text-align:center;
+	margin:auto;
+	/* background-color: lime; */
+}
+/*  */
+
+
+.div_container * {
+	margin:auto;
+}
+
+.div_main{
+    /* findyou 당신을 찾아드립니다. 글자 */
+	display:flex;
+	width:500px;
+}
+.div_search{
+	width:100%;
+	height:350px;
+	margin-top:80px;
+	background-image: url("../img/homebanner.png");
+	background-size:100% 350px;
+	background-repeat: no-repeat;
+	background-position:center center;
+	margin:auto; 
+/*  	background-color: fuchsia; */
+}
+
+.div_search  h1{
+	position:relative;
+	top:50px;
+}
+/* 
+.div_search > * {
+	margin-top:10px;
+}
+
+.div_search  h1:first-child{
+	font-size:50px;
+}
+
+#h1_text{
+	margin-bottom:70px;
+} */
+.div_board_img{
+    /* 게시판 소개 영역 */
+    width: auto;
+    height: 500px;
+    margin-top: 10px;
+  /*    background-color: #ffce67; */
+}
+.div_board_list{
+    /* 게시판 리스트 영역 */
+ 	background-color: rgba(253, 253, 236, 1);
+    width: auto;
+    height: 460px;   
+    margin-top: 20px;
+
+}
+.div_board_list_choice{
+    /* 리스트 버튼영역 */
+    /* background-color: indianred; */
+    height: 50px;
+    width: 60%;
+    text-align: left;
+
+}
+.div_board_list_choice > button{
+    /* 리스트 버튼 */
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+/*     border-bottom: 5px solid rgb(120, 147, 236); */
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.div_board_list_eight{
+/*     background-color: lightpink; */
+    width: 60%;
+    height: 380px;
+    display: inline-block;
+    text-align: center;
+
+}
+.div_board_list_1, .div_board_list_2, .div_board_list_3, .div_board_list_4{
+    width: 250px;
+    height: 150px;
+    background-color: #fff;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.div_board_list_1:hover, .div_board_list_2:hover, .div_board_list_3:hover, .div_board_list_4:hover{
+ /* 마우스 올리면 색 변환 */
+    width: 250px;
+    height: 150px;
+    background-color: #fff;
+    border: 5px solid rgb(120,147,236);
+    cursor: pointer;
+    box-shadow: 5px 5px 5px 5px gray;
+}
+.div_board_list_1 > h5, .div_board_list_2 > h5, .div_board_list_3 > h5, .div_board_list_4 > h5,
+.div_board_list_5 > h5, .div_board_list_6 > h5, .div_board_list_7 > h5, .div_board_list_8 > h5{
+    /* 게시글 날짜 */
+    width: 150px;
+    height: auto;
+    /* background-color: linen; */
+    position: relative;
+    right: -80px;
+    top: 10px;
+    font-size: 12px;
+    color: black;
+
+}
+.div_board_list_1 > h4, .div_board_list_2 > h4, .div_board_list_3 > h4, .div_board_list_4 > h4,
+.div_board_list_5 > h4, .div_board_list_6 > h4, .div_board_list_7 > h4, .div_board_list_8 > h4{
+    /* 게시글 제목 글자 */
+/*     background-color: navajowhite; */
+    width: 230px;
+    height: 100px;
+    position: relative;
+    margin-top: 15px;
+    font-size: 15px;
+    text-align: left;
+    font-weight: bold;
+    color: black;
+    
+}
+.div_board_list_1{
+    /* 게시글 첫번째 간격 맞출때 */
+    position: relative;
+    margin-left: 20px;
+}
+.div_board_list_5, .div_board_list_6, .div_board_list_7, .div_board_list_8{
+    width: 250px;
+    height: 150px;
+    background-color: #fff;
+	border: 2px solid black;
+    cursor: pointer;
+}
+.div_board_list_5:hover, .div_board_list_6:hover, .div_board_list_7:hover, .div_board_list_8:hover{
+ /* 마우스 올리면 색 변환 */
+    width: 250px;
+    height: 150px;
+    background-color: #fff;
+    border: 5px solid rgb(120,147,236);
+    cursor: pointer;
+    box-shadow: 5px 5px 5px 5px gray;
+}
+
+.div_board_list_5{
+    /* 게시글 두번째줄 간격 맞출때 */
+    position: relative;
+    margin-left: 20px;
+}
+.div_14{
+    /* 게시글 1~4번 */
+    display: flex;
+    width: 100%;
+    height: 50%;
+    /* background-color: magenta; */
+}
+.div_58{
+       /* 게시글 5~8번 */
+    display: flex;
+    width: 100%;
+    height: 50%;
+    /* background-color: limegreen; */
+}
+.div_hobby_recommend{
+    /* 취미추천 / 친구추천영역*/
+    background-color: rgba(253, 244, 232, 1);
+    width: auto;
+    height: 550px;
+
+}
+.div_hobby_recommend2{
+    /* background-color: orange; */
+    width: auto;
+    height: 400px;
+    display: inline-flex;
+    margin-top: 50px;
+}
+.div_hobby{
+    /* 내 주변 취미확장 */
+    width: 567px;
+    height: 400px;
+    /* background-color: palegoldenrod; */
+}
+.div_recommend{
+    /* 취미추천 */
+    width: 567px;
+    height: 400px;
+    /* background-color: palevioletred; */
+}
+.div_hobby_title{
+    /* 친구찾기 글자 */
+    width: 500px;
+    height: 40px;
+    /* background-color: powderblue; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.div_hobby_img{
+    /* 친구찾기 이미지 영역 */
+    width: 500px;
+    height: 290px;
+    /* background-color: powderblue;s */
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 5px gray;
+}
+.div_hobby_img img{
+	/* 친구찾기 이미지 */
+    border-radius: 10px;
+}
+.div_hobby_content{
+    /* 친구찾기 설명 */
+    width: 500px;
+    height: 85px;
+	 background-color: #fff;
+    margin-top: 40px;
+    color: black;
+/*     border: 2px solid gray; */
+    border-radius: 5px;
+    padding: 20px 0;
+    font-weight: bold;
+}
+
+.hobby_img_button{
+    /* 친구추천 버튼 */
+    position: relative;
+    border: rgba(0, 0, 0, 0) ;
+    background-color: rgba(185, 198, 248, 1);
+    top: -60px;
+    right:-180px;
+    border-radius: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px 5px gray;
+}
+.div_recommend_title{
+    /* 취미추천 글자 */
+    width: 500px;
+    height: 40px;
+    /* background-color: powderblue; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.div_recommend_img{
+    /* 취미추천 이미지 영역 */
+    width: 500px;
+    height: 290px;
+    /* background-color: powderblue; */
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px gray;
+    
+}
+.div_recommend_img img{
+    /* 취미추천 이미지 */
+    border-radius: 10px;
+}
+.div_recommend_content{
+    /*취미추천 설명 */
+    width: 500px;
+    height: 85px;
+	 background-color: #fff;
+    margin-top: 40px;
+    color: black;
+/*     border: 2px solid gray; */
+    border-radius: 5px;
+    padding: 20px 0; 
+    font-weight: bold;
+}
+.recommend_img_button{
+    /* 취미추천 버튼 */
+    position: relative;
+    border: rgba(0, 0, 0, 0) ;
+    background-color: rgba(185, 198, 248, 1);
+    top: -60px;
+    right:-180px;
+    border-radius: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px 5px gray;
+    
+}
+.div_board_list_button{
+	/* 더보기 버튼 */
+	border: none;
+	background-color: rgba(0,0,0,0);
+	border-bottom: 1px solid gray;
+	position: absolute;
+	margin-top: 372px;
+	margin-left: -600px;
+}
+.div_cnt_score_reply{
+	/* 랭킹 영역 */
+ 	background-color: rgba(244, 253, 236, 1);
+	width: auto;
+	height: 450px;
+/* 	margin-top: 30px; */
+}
+.div_cnt_score_reply2{
+	/* 랭킹영역 */
+/* 	background-color: blue; */
+	width: 60%;
+	height: 450px;	
+	display: inline-flex;
+}
+.div_cnt_best{
+	/* 조회수랭킹 영역 */
+	width: 300px;
+	height: 430px;
+/* 	background-color: silver; */
+}
+.div_score_best{
+	/* 평점랭킹 영역 */
+	width: 300px;
+	height: 430px;
+/* 	background-color: silver; */
+}
+.div_reply_best{
+	/* 댓글랭킹 영역 */
+	width: 300px;
+	height: 430px;
+/* 	background-color: silver; */
+}
+.div_cnt_best_title h4, .div_score_best_title h4, .div_reply_best_title h4{
+	/* 랭킹 타이틀 글자 */
+/*  	background-color:  fuchsia; */
+	margin-top: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: black;
+}
+.div_cnt_best_title h4{
+	/* 랭킹 타이틀 글자 (조회)*/
+	border-bottom: 7px solid #C8FFFF;
+}
+.div_reply_best_title h4{
+	/* 랭킹 타이틀 글자 (댓글)*/
+	border-bottom: 7px solid #FFF978;
+}
+.div_score_best_title h4{
+	/* 랭킹 타이틀 글자 (평점)*/
+	border-bottom: 7px solid #9BFFDA;
+}
+.list_btn_normal, .list_btn_business, .list_btn_notice{
+	font-style: black;
+}
+
+
+
+
+.div_cnt_best_rank_table, .div_score_best_rank_table, .div_reply_best_rank_table{
+	/* 랭킹 테이블 크기   */
+/*  	background-color: green; */
+	margin-top: 10px;
+	width: 300px !important;
+	height: 350px !important;
+/* 	border:2px solid gray;  */
+	border-radius: 5px;
+ 	box-shadow: 5px 5px 5px gray;
+}
+
+.div_cnt_best_rank_table{
+	/* 랭킹 테이블 뒷 배경 (조회수)  */
+	background-color: #6cc3d5;
+	color: black !important;
+}
+.div_reply_best_rank_table{
+	/* 랭킹 테이블 뒷 배경 (댓글)  */
+	background-color: #ffce67 ;
+	color: black !important;
+}
+.div_score_best_rank_table{
+	/* 랭킹 테이블 뒷 배경 (평점)  */
+ 	background-color: #78c2ad; 
+	color: black !important;
+
+}
+
+
+
+.div_cnt_best_rank_table thead, .div_score_best_rank_table thead, .div_reply_best_rank_table thead{
+	/* 랭킹 테이블 thead 정렬  */ 
+	text-align: center;
+}
+.rank_width{
+	width: 60px;
+	text-align: center;
+}
+.rank_width_id{
+	text-align: center;
+}
+.rank_width2{
+	display:block;
+	width: 100%;
+	height: 26px;
+	text-overflow: ellipsis;
+	overflow:hidden; 
+	cursor: pointer;
+	text-align: left;
+}
+
+
+.change{
+	text-align: center;
+}
+.div_cnt_best_rank_table .change:hover{
+	background-color: #C8FFFF;
+}
+.div_reply_best_rank_table .change:hover{
+	background-color: #FFF978;
+}
+.div_score_best_rank_table .change:hover{
+	background-color: #9BFFDA;
+}
+/* 사진버튼*/
+#btn_next, #btn_prev{
+	width:150px;
+	height:150px;
+	border:none;
+	background-color:transparent;
+	color:rgba(219, 215, 215, 1);
+	font-size:70px;
+	position:relative;
+/* 	font-weight:bold; */
+	border-radius:10px;
+    padding-bottom:30px;
+    line-height:40px;
+}
+#btn_next{
+	top:-320px;
+	left:430px;
+}
+#btn_prev{
+	top:-320px;
+	left:-430px;
+}
+/*////////////////////////  */
+.product_con{
+	width: 60% !important;
+    height: 500px;
+    background-color: lightblue;
+}
+.product_list{
+   height: 500px;
+	width: 100% !important;
+    background-color: lightpink;
+    position: relative;
+}
+
+
+.product_list > li{
+    height: 500px;
+
+    background-color: lightyellow;
+}
+.product_list > li{
+    position: absolute;
+    top: 0;
+}
+.product_list > li > a{
+    font-size: 120px;
+    color: #fff;
+}
+.product_list > li{
+    text-align: center;
+}
+
+
+.product_list{
+    overflow: hidden;
+}
+
+.product_list{
+    background-color: #fff;
+}
+.changing-title{
+	color: black;
+	font-weight: bold;
+}
+

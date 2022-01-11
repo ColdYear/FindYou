@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		<!-- Root Context: defines shared resources visible to all other web components -->
+		
+	<annotation-driven />
+	
+	<!--@@@@@@@ bootstrap @@@@@@@@@@@  -->
+	<resources mapping="/design/**" location="/design/" />
+	<resources mapping="/images/**" location="/images/" />
+	
+	
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.findYou" use-default-filters="false"> <!-- default filters를 false로하면 아무것도 스캔안한다. -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+		<!-- 빈 아이디는 무조건 multipartResolver로 해야됨 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+		
+	</beans:bean>
+	
+	<!-- 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/normalBoard/**"/>
+			<mapping path="/businessBoard/**"/>
+			<mapping path="/findFriend/**"/>
+			<mapping path="/recommendHobby/**"/>
+			<mapping path="/manager/**"/>
+			<mapping path="/managerBoard/**"/>
+			<mapping path="/mypage/**"/>
+			<mapping path="/message/**"/>
+			<mapping path="/common/**"/>
+			<exclude-mapping path="/normalBoard/normalBoardList.wow"/>
+			<exclude-mapping path="/businessBoard/businessBoardList.wow"/>
+			<exclude-mapping path="/managerBoard/noticeBoardList.wow"/>
+			<beans:bean class="com.findYou.common.interceptor.LoginCheckInterceptor" id="loginCheckInterceptor"></beans:bean>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/normalBoard/**"/>
+			<exclude-mapping path="/normalBoard/normalBoardList.wow"/>
+			<exclude-mapping path="/normalBoard/normalBoardView.wow"/>
+			<beans:bean class="com.findYou.common.interceptor.NormalCheckInterceptor" id="normalCehckInterceptor"></beans:bean>
+		</interceptor>
+		
+ 		<interceptor>
+			<mapping path="/businessBoard/**"/>
+			<exclude-mapping path="/businessBoard/businessBoardList.wow"/>
+			<exclude-mapping path="/businessBoard/businessBoardView.wow"/>
+			<exclude-mapping path="/businessBoard/b2bContent.wow"/>
+			<beans:bean class="com.findYou.common.interceptor.BusinessCheckInterceptor" id="businessCheckInterceptor"></beans:bean>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/manager/**"/>
+			<mapping path="/managerBoard/**"/>
+			<exclude-mapping path="/managerBoard/noticeBoardList.wow"/>
+			<exclude-mapping path="/managerBoard/noticeBoardView.wow"/>					
+			<beans:bean class="com.findYou.common.interceptor.ManagerCheckInterceptor" id="managerCheckInterceptor"></beans:bean>
+		</interceptor>
+		
+	</interceptors>
+</beans:beans>
+

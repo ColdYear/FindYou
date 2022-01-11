@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+.div_container{
+	height: 78vh;
+    text-align:center;
+ 
+ }
+#login_backgorund{
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index:-5;
+     height:1000px;
+     width:1920px;
+     opacity:1.0
+	}
+#login_opacity{
+	position:fixed;
+    top:0px;
+    left:0px;
+    background-color:black;
+    z-index:-3;
+    opacity:0.4;
+     height:1000px;
+     width:1920px;
+    
+}
+.div_box{
+    width:500px;
+    height:600px;
+     margin:auto;
+     margin-top:50px;
+}
+.div_title{
+
+	font-size: 30px;	
+	display:inline-block;
+}
+.div_login_title{
+	
+	font-size:20px;
+
+    margin-bottom:50px;
+    display:block;
+}
+
+.a_select_border{
+    padding: 15px;
+	margin:25px;
+	;
+}
+#div_login_border{
+	display:inline-block;
+}
+#div_login_box{
+	margin-top: 50px;
+	height:150px;
+   
+    display:block;
+    width:300px;
+}
+#div_login_Id{
+	margin-bottom:12px;
+    margin-left:41px;
+	position: relative;
+    top:10px;
+    right:41px;
+
+}
+#div_login_Pass{	
+	margin-bottom:12px;
+    margin-left:45px;
+	position: relative;
+    top:20px;	
+	right:38px;
+
+}
+#input_id_bar{
+	position: relative;
+	left:13px;
+	top:-15px;
+	width:235px;
+
+}
+#input_pass_bar{
+	position: relative;
+	left:6px;
+    top:-25px;
+    width:235px;
+}
+#div_login_checkBox{
+	position : relative;
+    right:70px;
+           
+}
+#div_login_submit{
+	margin-top:70px;
+	height:70px;
+	
+    display:block;
+    text-align:center;
+ width:300px;
+}
+#span_other_function{
+    margin-top:70px;
+	display:block;
+}
+
+Button 
+{border:0 none;
+padding:0;
+margin:0;
+background:
+transparent;*
+overflow:visible;
+cursor:pointer;
+ width:300px;
+ height:70px;}
+
+
+.btn-primary{
+
+    display:block;
+    position:relative;
+    margin-top: 50px;
+}
+.div_title{
+	margin-top:30px;
+}
+p{
+	font-size:35px;
+	color:white;
+}
+.card-body{
+	position:relative;
+	top:-7px;
+	margin-top:25px;
+}
+#div_login_checkBox{
+	top:-20px;
+}
+.a_select_border{
+	background-color:#78c2ad;
+    color:white;
+    text-decoration-line:none;
+}
+.div_top_project_name_img{
+	left:-30px;
+}
+
+.div_button{
+	margin:0px 10px;
+	text-decoration-line : none;
+}

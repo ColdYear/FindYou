@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.member.dao.IMemberDao">
+
+
+<insert id="insertMember" parameterType="com.findYou.member.vo.MemberVO">
+INSERT INTO member_info (
+       mem_id
+     , mem_pass
+     , mem_name
+     , mem_role
+     , mem_company_name
+     , mem_b2b_number
+     , mem_zip
+     , mem_road_addr
+     , mem_detailed_addr
+     , mem_hp
+     , mem_email
+     , mem_ip
+     , mem_del_yn
+     , mem_agree_yn
+     , mem_privacy_yn
+     , mem_event_yn
+     , mem_gender
+     , mem_chat_no
+     , mem_addr_x
+     , mem_addr_y
+) VALUES (
+       #{ memId}       
+     , #{ memPass}       
+     , #{ memName}       
+     , #{ memRole}       
+     , #{ memCompanyName}       
+     , #{ memB2bNumber}       
+     , #{ memZip}       
+     , #{ memRoadAddr}       
+     , #{ memDetailedAddr}       
+     , #{ memHp}       
+     , #{ memEmail}       
+     , #{ memIp}       
+     , 'N'      
+     , #{ agreeYn}       
+     , #{ privacyYn}       
+     , #{ eventYn}       
+      , #{memGender}   
+      , chat_no_seq.nextval
+      , #{memAddrX}
+      , #{memAddrY}   
+)
+
+</insert>
+
+<update id="updateJoinMember" parameterType="com.findYou.member.vo.MemberVO">
+	UPDATE member_info SET
+      mem_company_name=#{memCompanyName}
+     , mem_b2b_number=#{memB2bNumber}
+     , mem_zip=#{memZip}
+     , mem_road_addr=#{memRoadAddr}
+     , mem_detailed_addr=#{memDetailedAddr}
+     , mem_hp=#{memHp}
+     , mem_email=#{memEmail}
+     ,mem_addr_x=#{memAddrX}
+     ,mem_addr_y=#{memAddrY}
+	WHERE mem_id=#{memId}
+</update>
+<update id="deleteMember" parameterType="com.findYou.member.vo.MemberVO">
+	DELETE FROM MEMBER_INFO
+	WHERE MEM_ID = #{memId}
+
+</update>
+
+<select id="managerViewMember" parameterType="com.findYou.member.vo.MemberVO" resultType="com.findYou.member.vo.MemberVO">
+<![CDATA[  
+		SELECT 
+		  mem_id
+       , mem_name
+       , mem_role
+       , mem_gender
+       , mem_chat_no
+	FROM member_info
+	WHERE mem_role <> 'manager'
+	]]>
+</select>
+
+
+
+
+
+
+
+</mapper>
+

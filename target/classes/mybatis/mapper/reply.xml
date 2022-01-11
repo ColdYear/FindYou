@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.reply.dao.IReplyDao">
+
+
+
+<!-- 게시글 번호 받아서 ...-->
+<select id="getReplyListByParent" resultType="com.findYou.reply.vo.ReplyVO" parameterType="com.findYou.reply.vo.ReplyVO">
+select RE_NO
+     , RE_CATEGORY
+     , RE_PARENT_NO
+     , RE_MEM_ID
+     , RE_CONTENT
+     , RE_IP
+     , RE_REG_DATE
+     , RE_MOD_DATE
+from  reply a, member_info b
+where RE_PARENT_NO = #{reParentNo}
+AND   RE_CATEGORY = #{reCategory}
+AND a.re_mem_id = b.mem_id
+order by RE_REG_DATE desc
+
+</select>
+
+<insert id="insertReply" parameterType="com.findYou.reply.vo.ReplyVO">
+INSERT INTO reply (
+      re_no
+    , re_category
+    , re_parent_no
+    , re_mem_id
+    , re_content
+    , re_ip
+    , re_reg_date
+    , re_mod_date
+) VALUES (
+      SEQ_b2b_REPLY.nextval
+    , #{reCategory}
+    , #{reParentNo}
+    , #{reMemId}
+    , #{reContent}
+    , '000.000.000'
+    , sysdate
+    , null
+)
+</insert>
+
+<update id="updateReply" parameterType="com.findYou.reply.vo.ReplyVO">
+UPDATE reply
+SET re_content = #{reContent} 
+WHERE re_no = #{reNo}
+</update>
+
+<delete id="deleteReply" parameterType="com.findYou.reply.vo.ReplyVO">
+DELETE FROM reply
+WHERE re_no = #{reNo}
+</delete>
+
+<select id="replyBestRank" resultType="com.findYou.reply.vo.ReplyVO">
+select t3.*
+from( 
+    select rownum as rnum, t2.*
+    from (
+        select t1.normal_board_title as re_content
+            , t1.re_parent_no
+            ,count(*)
+            ,re_category
+        from
+            (
+                SELECT re_no
+                       , re_category
+                       ,a.re_parent_no
+                       ,b.normal_board_title
+                       
+                FROM reply a
+                    ,(select normal_board_index, normal_board_title, 'normal' as category
+                      from normal_board) b
+                where a.re_parent_no = b.normal_board_index
+                and a.re_category = b.category
+            union    
+                SELECT re_no
+                       , re_category
+                       ,a.re_parent_no
+                       ,b.b2b_board_title
+                FROM reply a
+                    ,(select b2b_board_index, b2b_board_title, 'business' as category
+                      from b2b_board) b
+                where a.re_parent_no = b.b2b_board_index
+                and a.re_category = b.category
+            ) t1
+        GROUP by re_parent_no, normal_board_title, t1.re_category
+        order by 3 desc
+        ) t2
+    )t3
+where rnum BETWEEN 1 and 10
+
+
+</select>
+
+
+
+
+</mapper>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.b2bParticipation.dao.B2bParticipationDao">
+
+<insert id="insertOrDelete" parameterType="com.findYou.b2bParticipation.vo.B2bParticipationVO">
+INSERT INTO b2b_join_participation (
+    b2b_part_index
+    , b2b_part_board_number
+    , b2b_part_id
+    , b2b_part_addr
+    , b2b_part_cancel_yn
+) VALUES (
+    seq_b2b_join_participation.nextval
+    ,#{b2bPartBoardNumber}
+    , #{b2bPartId}
+    , #{b2bPartAddr}
+    ,'N'
+)
+
+</insert>
+
+<select id="selectId" parameterType="com.findYou.b2bParticipation.vo.B2bParticipationVO" resultType="com.findYou.b2bParticipation.vo.B2bParticipationVO">
+select b2b_part_index
+       , b2b_part_board_number
+       , b2b_part_id
+       , b2b_part_addr
+       , b2b_part_cancel_yn
+       , b.mem_name as b2b_part_name
+from b2b_join_participation a
+	, member_info b
+where a.b2b_part_id = b.mem_id 
+and b2b_part_id = #{b2bPartId}
+and b2b_part_board_number = #{b2bPartBoardNumber}
+</select>
+
+<update id="cancelN" parameterType="com.findYou.b2bParticipation.vo.B2bParticipationVO">
+UPDATE b2b_join_participation
+SET b2b_part_cancel_yn = 'N'
+WHERE b2b_part_board_number = #{b2bPartBoardNumber}
+      AND b2b_part_id = #{b2bPartId}
+
+</update>
+
+
+<update id="cancelY" parameterType="com.findYou.b2bParticipation.vo.B2bParticipationVO">
+UPDATE b2b_join_participation
+SET b2b_part_cancel_yn = 'Y'
+WHERE b2b_part_board_number = #{b2bPartBoardNumber}
+      AND b2b_part_id = #{b2bPartId}
+
+</update>
+
+<select id="participationCount" parameterType="com.findYou.b2bParticipation.vo.B2bParticipationVO" resultType="int">
+SELECT COUNT(*)
+FROM b2B_JOIN_PARTICIPATION a
+	, member_info b
+where a.b2b_part_id = b.mem_id
+and b2b_part_board_number = #{b2bPartBoardNumber}
+and b2b_part_cancel_yn = 'N'
+</select>
+
+<select id="cancleYn" parameterType="com.findYou.b2bParticipation.vo.B2bParticipationVO" resultType="String">
+
+SELECT b2b_part_cancel_yn
+FROM b2B_JOIN_PARTICIPATION a
+	, member_info b
+where a.b2b_part_id = b.mem_id
+and b2b_part_id=#{b2bPartId}
+and b2b_part_board_number =#{b2bPartBoardNumber}
+
+</select>
+
+<select id="b2bParticipationList" parameterType="com.findYou.b2bParticipation.vo.B2bParticipationVO" resultType="com.findYou.b2bParticipation.vo.B2bParticipationVO">
+
+SELECT b2b_part_id
+		, b.mem_name as b2b_part_name
+FROM b2B_JOIN_PARTICIPATION a
+	, member_info b
+where a.b2b_part_id = b.mem_id 
+and b2b_part_cancel_yn = 'N'
+and b2b_part_board_number = #{b2bPartBoardNumber}
+
+</select>
+
+<select id="getTitleList" parameterType="String" resultType="com.findYou.b2bParticipation.vo.B2bParticipationVO">
+<![CDATA[
+select f.*
+from (
+    select rownum as rnum , e.*
+    from (
+        select a.b2b_part_board_number
+            ,b.b2b_board_reg_date
+            ,'business' as b2b_category
+            ,a.b2b_part_id
+        from b2b_join_participation a
+            ,b2b_board b
+        where a.b2b_part_board_number = b.b2b_board_index
+        and a.b2b_part_id = #{b2bPartId}
+        union
+        select c.normal_part_board_number
+            ,d.normal_board_reg_date
+            ,'normal' as normal_category
+            ,c.normal_part_id
+        from normal_join_participation c
+            , normal_board d
+        where c.normal_part_board_number = d.normal_board_index
+        and c.normal_part_id = #{b2bPartId}
+        order by 2 desc
+        ) e
+    ) f
+where rnum <=10
+]]>
+
+
+
+
+
+</select>
+
+<delete id="deleteBusinessPartticipation" parameterType="com.findYou.businessBoard.vo.BusinessBoardVO">
+delete from b2b_join_participation
+where b2b_part_board_number=#{b2bBoardIndex}
+</delete>
+
+
+<select id="countPart" parameterType="int" resultType="int">
+select count(*)
+from b2b_join_participation  
+where b2b_part_cancel_yn = 'N'
+and B2B_PART_BOARD_NUMBER = #{b2bBoardIndex}
+
+</select>
+
+
+
+
+</mapper>

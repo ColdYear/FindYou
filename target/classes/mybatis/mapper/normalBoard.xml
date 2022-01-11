@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.normalBoard.dao.INormalBoardDao">
+	
+	<sql id="search">
+		<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(normalBoardSearchWord)">
+			<choose>
+				<when test='normalBoardSearchType == "TOTAL"'>
+					AND (normal_board_title LIKE '%' || #{normalBoardSearchWord} || '%' 
+					OR	 normal_board_content LIKE '%' || #{normalBoardSearchWord} || '%')
+				</when>
+				<when test='normalBoardSearchType == "HOBBY"'>
+					AND normal_board_template = 'HB00'
+					AND (normal_board_title LIKE '%' || #{normalBoardSearchWord} || '%' 
+					OR	 normal_board_content LIKE '%' || #{normalBoardSearchWord} || '%')
+				</when>
+				<when test='normalBoardSearchType == "FOOD"'>
+					AND normal_board_template = 'FD00'
+					AND (normal_board_title LIKE '%' || #{normalBoardSearchWord} || '%' 
+					OR	 normal_board_content LIKE '%' || #{normalBoardSearchWord} || '%')
+				</when>
+				<when test='normalBoardSearchType == "CLUB"'>
+					AND normal_board_template = 'CB00'
+					AND (normal_board_title LIKE '%' || #{normalBoardSearchWord} || '%' 
+					OR	 normal_board_content LIKE '%' || #{normalBoardSearchWord} || '%')
+				</when>
+			</choose>
+		</if>
+		
+		<if test="@org.apache.commons.lang3.StringUtils@isBlank(normalBoardSearchWord)">
+			<choose>
+				<when test='normalBoardSearchType == "HOBBY"'>
+						AND normal_board_template = 'HB00'
+					</when>
+					<when test='normalBoardSearchType == "FOOD"'>
+						AND normal_board_template = 'FD00'
+					</when>
+					<when test='normalBoardSearchType == "CLUB"'>
+						AND normal_board_template = 'CB00'
+					</when>
+			</choose>
+		</if>
+		
+
+	</sql>
+	
+	<sql id="order">
+		<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(normalBoardOrderType)">
+			<choose>
+				<when test='normalBoardOrderType == "HIT"'>
+					ORDER BY normal_board_hit DESC, normal_board_index desc
+				</when>
+				<when test='normalBoardOrderType == "DAY"'>
+					ORDER BY normal_board_reg_date DESC, normal_board_index desc
+				</when>
+				<!-- 평점은 킵 -->
+			</choose>
+		</if>
+	</sql>
+	
+	
+
+
+	<select id="getNormalBoardList" parameterType="com.findYou.normalBoard.vo.NormalSearchBoardVO" resultType="com.findYou.normalBoard.vo.NormalBoardVO">
+	<![CDATA[
+    
+    	SELECT normal_board_index
+         , normal_board_writer
+         , normal_board_template
+         , normal_board_category
+         , normal_board_title
+         , normal_board_road_address
+         , normal_board_detailed_addr
+         , normal_board_date
+         , normal_board_hour
+         , normal_board_food
+         , normal_board_cost
+         , normal_board_content
+         , normal_board_deadline_number
+         , to_char(normal_board_reg_date, 'YYYY-MM-DD') AS normal_board_reg_date
+         , normal_board_mod_date
+         , normal_board_hit
+         , normal_board_deadline_yn
+         , normal_board_del_yn
+         , normal_board_zip
+	FROM normal_board a, member_info b
+	WHERE normal_board_del_yn = 'N'
+	AND a.normal_board_writer = b.mem_id
+	AND to_char(normal_board_date,'YYYY-MM-DD') >= to_char(sysdate,'YYYY-MM-DD')
+	]]>
+	<include refid="search"></include>
+	<include refid="order"></include>
+
+	
+	
+	</select>
+	
+	<select id="getTitleByIndex" resultType="String" parameterType="int">
+		SELECT normal_board_title
+		FROM normal_board
+		WHERE normal_board_index = #{normalBoardIndex}
+	</select>
+	
+	
+	
+	
+	<select id="getNormalBoard" resultType="com.findYou.normalBoard.vo.NormalBoardVO" parameterType="String">
+	SELECT normal_board_index
+         , normal_board_writer
+         , normal_board_template
+         , normal_board_category
+         , normal_board_title
+         , normal_board_road_address
+         , normal_board_detailed_addr
+         , to_char(normal_board_date, 'YYYY-MM-DD') as normal_board_date
+         , normal_board_hour
+         , normal_board_food
+         , normal_board_cost
+         , normal_board_content
+         , normal_board_deadline_number
+         , normal_board_reg_date
+         , normal_board_mod_date
+         , normal_board_hit
+         , normal_board_deadline_yn
+         , normal_board_del_yn
+         , normal_board_zip
+         , b.comm_nm as normal_board_category_nm
+	FROM normal_board a, comm_code b
+	WHERE normal_board_index = #{normalBoardIndex}
+	AND a.normal_board_category = b.comm_cd
+	</select>
+	
+	<update id="updateNormalBoard" parameterType="com.findYou.normalBoard.vo.NormalBoardVO">
+		update normal_board
+		set normal_board_title = #{normalBoardTitle}
+		   ,normal_board_category = #{normalBoardCategory}
+		   ,normal_board_road_address = #{normalBoardRoadAddress}
+		   ,normal_board_detailed_addr = #{normalBoardDetailedAddr}
+		   ,normal_board_date = to_date(#{normalBoardDate}, 'YYYY-MM-DD') 
+		   ,normal_board_hour = #{normalBoardHour}
+		   <if test='@org.apache.commons.lang3.StringUtils@isNotBlank(normalBoardFood)'>
+		   		,normal_board_food = #{normalBoardFood}
+		   </if>
+		   ,normal_board_cost = #{normalBoardCost}
+		   ,normal_board_content = #{normalBoardContent}
+		   ,normal_board_deadline_number = #{normalBoardDeadlineNumber}
+		   ,normal_board_mod_date = sysdate
+		   , normal_board_zip = #{normalBoardZip}
+
+		where normal_board_index = to_number(#{normalBoardIndex})
+	</update>
+	
+	<update id="deleteNormalBoard" parameterType="String">
+		update normal_board
+		set normal_board_del_yn = 'Y'
+		where normal_board_index = #{normalBoardIndex}
+	</update>
+	
+	<insert id="insertNormalBoard" parameterType="com.findYou.normalBoard.vo.NormalBoardVO">
+	
+	
+		<selectKey resultType="int" order="BEFORE" keyProperty="normalBoardIndex">
+			SELECT seq_normal_board.nextval from dual
+		</selectKey>
+	
+		INSERT INTO  normal_board (
+					   normal_board_index
+				    , normal_board_writer
+				    , normal_board_template
+				    , normal_board_category
+				    , normal_board_title
+				    , normal_board_road_address
+				    , normal_board_detailed_addr
+				    , normal_board_date
+				    , normal_board_hour
+				    , normal_board_food
+				    , normal_board_cost
+				    , normal_board_content
+				    , normal_board_deadline_number
+				    , normal_board_reg_date
+				    , normal_board_zip
+				    )
+		VALUES(
+			 #{normalBoardIndex}
+			,#{normalBoardWriter}
+			,#{normalBoardTemplate}
+			,#{normalBoardCategory}
+			,#{normalBoardTitle}
+			,#{normalBoardRoadAddress}
+			,#{normalBoardDetailedAddr}
+			,to_date(#{normalBoardDate},'YYYY-MM-DD')
+			,#{normalBoardHour}
+			,#{normalBoardFood}
+			,#{normalBoardCost}
+			,#{normalBoardContent}
+			,#{normalBoardDeadlineNumber}
+			,sysdate
+			,#{normalBoardZip}
+		)
+	</insert>
+	
+	<update id="increaseNormalBoardHit" parameterType="int">
+		update normal_board
+		set normal_board_hit = normal_board_hit + 1
+		where normal_board_index = #{normalBoardIndex}
+	</update>
+	
+	
+	<select id="homeNormalBoardList14" resultType="com.findYou.normalBoard.vo.NormalBoardVO">
+	select b.*
+	from(
+	    select rownum as rnum , a.*
+	    from(
+	        SELECT normal_board_index
+	       , normal_board_writer
+	       , normal_board_template
+	       , normal_board_category
+	       , normal_board_title
+	       , normal_board_road_address
+	       , normal_board_date
+	       , normal_board_food
+	       , normal_board_cost
+	       , normal_board_content
+	       , normal_board_deadline_number
+	       , to_char(normal_board_reg_date, 'YYYY-MM-DD') AS normal_board_reg_date
+	       , normal_board_mod_date
+	       , normal_board_hit
+	       , normal_board_deadline_yn
+	       , normal_board_del_yn
+	       , normal_board_detailed_addr
+	       , normal_board_zip
+	       , normal_board_hour
+	        FROM normal_board
+	        WHERE normal_board_del_yn = 'N'
+	        order by normal_board_reg_date desc
+	        ) a
+    	) b
+	where rnum between 1 and 4
+	
+	</select>
+
+	<select id="homeNormalBoardList58" resultType="com.findYou.normalBoard.vo.NormalBoardVO">
+	select b.*
+	from(
+	    select rownum as rnum , a.*
+	    from(
+	        SELECT normal_board_index
+	       , normal_board_writer
+	       , normal_board_template
+	       , normal_board_category
+	       , normal_board_title
+	       , normal_board_road_address
+	       , normal_board_date
+	       , normal_board_food
+	       , normal_board_cost
+	       , normal_board_content
+	       , normal_board_deadline_number
+	       , to_char(normal_board_reg_date, 'YYYY-MM-DD') AS normal_board_reg_date
+	       , normal_board_mod_date
+	       , normal_board_hit
+	       , normal_board_deadline_yn
+	       , normal_board_del_yn
+	       , normal_board_detailed_addr
+	       , normal_board_zip
+	       , normal_board_hour
+	        FROM normal_board
+	        WHERE normal_board_del_yn = 'N'
+	        order by normal_board_reg_date desc
+	        ) a
+    	) b
+	where rnum between 5 and 8
+	
+	</select>
+	
+	
+	
+	<select id="myPageMeetingList" parameterType="String" resultType="com.findYou.normalBoard.vo.NormalBoardVO">
+		<![CDATA[ 
+	
+	SELECT normal_board_index
+       , normal_board_writer
+       , normal_board_template
+       , normal_board_category
+       , normal_board_title
+       , normal_board_road_address
+       , normal_board_date
+       , normal_board_food
+       , normal_board_cost
+       , normal_board_content
+       , normal_board_deadline_number
+       , normal_board_reg_date
+       , normal_board_mod_date
+       , normal_board_hit
+       , normal_board_deadline_yn
+       , normal_board_del_yn
+       , normal_board_detailed_addr
+       , normal_board_zip
+       , normal_board_hour
+	FROM normal_board
+	where normal_board_writer = #{normal_board_writer}
+	and normal_board_del_yn = 'N'
+	and to_char(normal_board_date, 'YYYY-MM-DD') > to_char(sysdate, 'YYYY-MM-DD')
+	order by normal_board_reg_date desc, normal_board_index desc
+	]]>
+	</select>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

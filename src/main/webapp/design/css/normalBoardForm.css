@@ -1,0 +1,120 @@
+
+body{
+	text-align:center;
+}
+
+.div_container{
+	width:80%;
+	height:1300px;
+    display: inline-block;
+	text-align:center;
+}
+
+.div_container  *{
+	margin:auto;
+}
+
+table{
+	width:1000px;
+	height:100%;
+	font-size:20px;
+}
+
+table td{
+	padding:30px;
+}
+
+table td:first-child{
+	text-align:left;
+}
+
+.div_file_area{
+	width:500px;
+	height:50px;
+	line-height:45px;
+	text-align:left;
+	display:flex;
+}
+
+.div_file_area  input{
+	width:430px;
+	margin-left:10px;
+}
+
+
+table td:last-child > input{
+	width:500px;
+	height:50px;
+	font-size:20px;
+}
+
+table td:last-child  select{
+	font-size:20px;
+}
+
+textarea{
+	width:500px;
+	height:300px;
+}
+
+table tr:nth-child(2n) td{
+	background-color:#f8f9fa;
+}
+
+.div_btn{
+	margin:30px 30px;
+}
+
+
+/* ====select / option 왼쪽 정렬 ====== */
+.div_select{
+	width:500px;
+	height:50px;
+	text-align:left;
+}
+
+.div_zip{
+	display:flex;
+	width:730px;
+}
+
+.div_zip > button{
+	position:relative;
+	left:-200px;
+}
+
+.div_zip > input{
+	width:150px;
+}
+
+
+.div_date_content{
+	display:inline-block;
+}
+
+tbody > tr > td:first-child{
+	color:black;
+}
+
+.div_date_content{
+	width:250px;
+}
+
+.span_error{
+	color:red;
+	font-size:15px;
+}
+
+.div_zip .span_error{
+	display:block;
+	width:500px;
+}
+
+
+
+
+
+
+
+
+

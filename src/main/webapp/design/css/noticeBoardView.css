@@ -1,0 +1,166 @@
+
+
+
+
+h2{
+	
+	position : relative;
+	top : 90px;
+	
+
+}
+.total_box{
+	display : inline-block;
+	width : 50%;
+	height:700px;
+    background-color : #B8E6E1;
+    border-radius : 20px;
+    color: #272727;
+    font-weight : bold;
+    margin-top : -150px;
+}
+
+.regist_button{
+	
+	height : 40px;
+	width : 80px;
+	
+}
+.delete_button{
+
+	height : 40px;
+	width : 80px;
+	
+}
+
+
+
+.notice_title{
+	position : relative;
+    top : 20px;
+	height: 50px;
+	width : 100%;
+	background-color : aliceblue;
+	left: 13%;
+}
+.notice_content{
+	position : relative;
+	top : 50px;
+	display : center;
+	height : 600px;
+	width : 100%;
+	background-color : aliceblue;
+	left : 13%;
+}
+.form-control{
+	width : 800px !important;
+	position : relative;
+    top : 20px;
+}
+
+.total_button{
+    position  : relative;
+    left : 390px;
+    top : 10px;
+    width : 100%;
+    height : 180px;	
+}
+.title_main{
+    position : relative;
+    top: 200px;
+}
+.div_container{
+     height: 1300px;
+    
+}
+
+
+
+
+h2{
+	
+	position : relative;
+	top : 90px;
+	
+
+}
+.total_box{
+	display : inline-block;
+	width : 50%;
+	height:700px;
+    background-color : #B8E6E1;
+    border-radius : 20px;
+    color: #272727;
+    font-weight : bold;
+    margin-top : -100px;
+}
+
+.regist_button{
+	
+	height : 40px;
+	width : 80px;
+	
+}
+.delete_button{
+
+	height : 40px;
+	width : 80px;
+	
+}
+
+
+
+.notice_title{
+	position : relative;
+    top : 20px;
+	height: 50px;
+	width : 100%;
+	background-color : aliceblue;
+	left: 13%;
+}
+.notice_content{
+	position : relative;
+	top : 50px;
+	display : center;
+	height : 600px;
+	width : 100%;
+	background-color : aliceblue;
+	left : 13%;
+}
+.form-control{
+	width : 800px !important;
+	position : relative;
+    top : 20px;
+}
+
+.total_button{
+    position  : relative;
+    left : 390px;
+    top : 10px;
+    width : 100%;
+    height : 180px;	
+}
+.title_main{
+    position : relative;
+    top: 200px;
+}
+.div_container{
+     height: 1300px;
+    
+}
+.text_title{
+	position : relative;
+	left : -410px;
+	top : 40px;
+	font-size : 20px;
+}
+.text_content{
+	position : relative;
+	left : -410px;
+	top : 60px;
+	font-size : 20px;
+}
+.text_box{
+	margin-top : -50px;
+	width : 60%;
+}

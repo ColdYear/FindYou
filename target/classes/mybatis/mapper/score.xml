@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.score.dao.IScoreDao">
+
+<insert id="insert" parameterType="com.findYou.score.vo.ScoreVO">
+	INSERT INTO normal_member_avg_score (
+	    member_score_index
+	    , member_score_board_number
+	    , member_score_id
+	    , member_score
+	    , member_score_tester
+	) VALUES (
+	     seq_avg_score.nextval
+	    ,#{memberScoreBoardNumber}
+	    ,#{memberScoreId}
+	    ,#{memberScore}
+	    ,#{memberScoreTester}
+	) 
+</insert>
+
+<select id="countMember" parameterType="com.findYou.score.vo.ScoreVO" resultType="int">
+	select count(*)
+	from normal_member_avg_score
+	where member_score_tester = #{memberScoreTester}
+	and member_score_board_number = #{memberScoreBoardNumber}
+</select>
+
+
+<select id="getScoreMember" resultType="com.findYou.score.vo.ScoreVO" parameterType="com.findYou.score.vo.ScoreVO">
+	select *
+	from normal_member_avg_score
+	where member_score_board_number = #{memberScoreBoardNumber}
+	and member_score_id = #{memberScoreId}
+	and member_score_tester = #{memberScoreTester}
+</select>
+
+
+<select id="getScoreList" resultType="com.findYou.score.vo.ScoreVO" parameterType="com.findYou.score.vo.ScoreVO">
+	select *
+	from normal_member_avg_score
+	where member_score_board_number = #{memberScoreBoardNumber}
+	and member_score_tester = #{memberScoreTester}
+</select>
+
+<select id="getScoreById" resultType="String" parameterType="String">
+	select AVG(MEMBER_SCORE)
+	from normal_member_avg_score
+	where member_score_id = #{memberScoreId}
+</select>
+
+<select id="checkMemberYn" resultType="com.findYou.score.vo.ScoreVO" parameterType="String">
+SELECT member_score_index
+       , member_score_board_number
+       , member_score_id
+       , member_score
+       , member_score_tester
+FROM normal_member_avg_score
+where member_score_id = #{memberScoreId}
+</select>
+
+
+<select id="socreBestRank" resultType="com.findYou.score.vo.ScoreVO">
+select b.*
+from(
+    select ROWNUM as rnum, a.*
+    from(
+            SELECT member_score_id
+                   , avg(member_score) as member_score
+            FROM normal_member_avg_score
+            GROUP by member_score_id
+            ORDER BY member_score desc
+        ) a
+    ) b
+where rnum between 1 and 10
+</select>
+
+<select id="getLowScoreList" resultType="com.findYou.score.vo.ScoreVO">
+<![CDATA[
+select member_score_id, count(*) as low_count
+from normal_member_avg_score
+where member_score = 1
+group by member_score_id
+having count(*) >= 5
+]]>
+</select>
+
+
+
+
+</mapper>

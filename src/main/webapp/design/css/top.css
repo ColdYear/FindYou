@@ -1,0 +1,147 @@
+body{
+    text-align: center;
+}
+.div_main{
+    width: 80%;
+    height: 80px;
+    display: inline-block;
+}
+
+.div_top{
+    /* div 가로정렬 */
+    display: flex;
+    width: 100%;
+    height:80px;
+    position: relative;
+}
+
+.div_top_project_name{
+    /* 프로젝트 이름, 사진*/
+    cursor:pointer;
+    display: flex;
+    width: 25%;
+}
+.div_top_project_name_img{
+    /* 사진 */
+    width: 40px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 180px;
+}
+.div_top_project_name_nm h3{
+    /* 프로젝트 이름 */
+    width: 100px;
+    height: 30px;
+}
+.div_top_ul{
+    /* 메뉴이름 */
+    width: 60%;
+    height: 80px;
+}
+.div_top_ul li{
+    /* 메뉴이름 li */
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+    margin-left: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+
+}
+.div_top_login{
+    /* 로그인 구역*/
+    width: 20%;
+}
+.div_top_login h5{
+    /* 로그인 글자 */
+    text-align: left;
+    margin-top: 30px;
+    cursor: pointer;
+    
+}
+
+.div_top_ul li{
+    /* 메뉴 가로 정렬 */
+    list-style: none;
+    float: left;
+}
+.chat{
+	/* chatting 오른쪽 하단 고정 */
+width:50px;
+height:50px;
+position:fixed;
+top:800px;
+right:50px
+}
+
+.modal-content{
+	width:450px;
+}
+#modal-body{
+	/* 스크롤생성 */
+    overflow-y: auto;
+
+}
+#modal-body{
+    /* 채팅창 높이 */
+    height: 500px;
+
+    overflow-y: auto;
+}
+
+
+.form-control{
+	width:260px;
+}
+
+#chat_arlam{
+    position:fixed;
+       bottom:-20
+	}
+
+.div_top_project_name_img{
+    position:relative;
+    top:-10px;
+	}
+
+.div_top_project_name_img{
+
+	position:relative;
+	left:-5px;
+}
+
+
+.nav-link{
+	margin-right:30px;
+}
+.navbar-brand{
+	position:relative;
+	left:-30px;
+}
+.navbar-brand{
+	position:relative;
+	left:-30px;
+}
+.div_top_project_name_img{
+	position:relative;
+	left:-35px;
+}
+.nav-item{
+	margin-right:30px;
+}
+.chat_op_user{
+    background-color: lightyellow;
+  border: lightgreen solid 1px;
+  border-radius: 5px;
+  color:  black;
+  font-size: 15px;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: -0.25px;
+  margin-top: 6.8px;
+  padding: 5px 11px;
+  position: relative;
+  width: fit-content;
+  z-index: 100;
+  text-overflow:clip;
+  }

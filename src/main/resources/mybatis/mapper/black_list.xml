@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.findYou.blackList.dao.IBlackListDao">
+
+<select id="getBlackList" resultType="com.findYou.blackList.vo.BlackListVO" parameterType="String">
+	SELECT mem_id
+	FROM black_list
+	WHERE mem_id = #{memId}
+</select>
+
+<insert id="insertBlackList" parameterType="com.findYou.blackList.vo.BlackListVO">
+	INSERT INTO black_list(mem_id)
+	VALUES(
+		 #{memId}
+	)
+
+</insert>
+
+
+<select id="businessGenderCheck" resultType="com.findYou.blackList.vo.BlackListVO">
+SELECT mem_id
+FROM black_list
+</select>
+
+</mapper>

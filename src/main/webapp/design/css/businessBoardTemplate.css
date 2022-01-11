@@ -1,0 +1,80 @@
+body{
+    text-align: center;
+}
+.div_container{
+    width: 80%;
+    height: 700px;
+    display: inline-block;
+    /* background-color:dimgray; */
+    margin-top: 80px;
+}
+.div_template{
+    height: 400px;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: center;
+    margin-top: px;
+}
+.div_template_1{
+    /* 취미 */
+    width: 330px;
+    background-color: #f3969a;
+    float: left;
+    margin-right: 50px;
+}
+.div_template_2{
+    /* 동호회 */
+    width: 330px;
+    background-color: #78c2ad;
+    float: left;
+    margin-right: 50px;
+}
+.div_template_3{
+    /* 봉사 */
+    width: 330px;
+    background-color: #ffce67;
+    float: left;
+}
+
+.div_template_1:hover, .div_template_2:hover, .div_template_3:hover{
+	transform:scale(1.1);
+}
+
+
+h3{
+	padding-top:20px;
+}
+
+.div_template_1, .div_template_2, .div_template_3{
+	border-radius:20px;
+}
+
+.div_template h3{
+    /* 취미 동호회 봉사 글자 */
+    /* background-color: greenyellow; */
+}
+.div_template_top{
+    /* background-color: khaki; */
+    display: inline-block;
+    margin-top: 50px;
+    width: 1100px;
+    height: 140px;
+}
+.div_template_top_text{
+    /* 선택하기 글자 */
+    /* background-color: lightskyblue; */
+    text-align: center;
+}
+.div_template_top_list_bt{
+    /* 목록 버튼 */
+    /* background-color: lime; */
+    text-align: left;
+}
+.div_template_top_list_bt > a{
+	font-size:20px;
+}
+
+
+.div_templage_1 a, .div_templage_2 a, .div_templage_3 a{
+    cursor: pointer;
+}
